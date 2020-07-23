@@ -56,7 +56,7 @@
 
 ### 3.3-) Crear base de datos y Migrar los modelos:
 
-    Para migrar los modelos del proyecto se debe  ingresar a la raiz del proyecto YBT y usar el siguiente comando:
+    Para migrar los modelos del proyecto se debe  ingresar a la raiz del proyecto api-luis-barrios-itcrowd y usar el siguiente comando:
 
     (itcrowd)$ python manage.py makemigrations
 
@@ -73,7 +73,6 @@
 ## 4-) Frontend:
 
 ### 4.1-) Instalar los requerimientos del proyecto:
-
 
     Entrar en la carpeta raiz del proyecto:
 
