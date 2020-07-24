@@ -34,6 +34,9 @@ const Person = ({ history }) => {
   const [director, setDirector] = useState([])
   const [producer, setProducer] = useState([])
 
+  const token = localStorage.getItem('token')
+
+
   // Effects
   useEffect(() => {
     getMovies()
@@ -47,10 +50,21 @@ const Person = ({ history }) => {
   }
 
   const createPerson = (data) => {
-    axios.post(`${config.API_HOST}/person/`, data, { 'Authorization': 'Token ' + localStorage.getItem('token') }
-    ).then(result => {
-      //history.push("/admin/movie")
+    axios({
+      method: 'post',
+      url: `${config.API_HOST}/person/`,
+      data: data,
+      headers: { 'Authorization': 'Token ' + token }
     })
+      .then(function (response) {
+        //handle success
+        console.log(response.data.token);
+        // localStorage.setItem('token', response.data.token);
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+      })
   }
 
   return (
@@ -66,6 +80,7 @@ const Person = ({ history }) => {
         }}
         validationSchema={PersonSchema}
         onSubmit={values => {
+          console.log("AQUIIIIIIIIIIIIIIIIIIII")
           createPerson(values)
         }}
         render={({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
@@ -77,7 +92,7 @@ const Person = ({ history }) => {
                   variant="outlined"
                   fullWidth
                   label="First Name"
-                  name="title"
+                  name="first_name"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.first_name}
@@ -112,7 +127,7 @@ const Person = ({ history }) => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="content-actors-label">Actors</InputLabel>
+                  <InputLabel id="content-actors-label">Movies as Actor</InputLabel>
                   <Select
                     id="content-actors"
                     name="movies_as_actor"
@@ -140,7 +155,7 @@ const Person = ({ history }) => {
                     renderValue={(selected) => (
                       <div>
                         {selected.map((value) => (
-                          <Chip key={value.id} label={`${value.first_name} ${value.last_name} - ${value.alias}`} />
+                          <Chip key={value.id} label={`${value.title}`} />
                         ))}
                       </div>
                     )}
@@ -150,7 +165,7 @@ const Person = ({ history }) => {
                       movies.map(item => (
                         <MenuItem key={item.id} value={item}>
                           <Checkbox checked={actor.filter(a => a.id == item.id).length != 0} />
-                          <ListItemText primary={`${item.first_name} ${item.last_name}`} />
+                          <ListItemText primary={`${item.title}`} />
                         </MenuItem>
                       ))
                     }
@@ -160,7 +175,7 @@ const Person = ({ history }) => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="content-directors-label">Directors</InputLabel>
+                  <InputLabel id="content-directors-label">Movies as Director</InputLabel>
                   <Select
                     id="content-directors"
                     name="directors"
@@ -188,7 +203,7 @@ const Person = ({ history }) => {
                     renderValue={(selected) => (
                       <div>
                         {selected.map((value) => (
-                          <Chip key={value.id} label={`${value.first_name} ${value.last_name}`} />
+                          <Chip key={value.id} label={`${value.title}`} />
                         ))}
                       </div>
                     )}
@@ -198,7 +213,7 @@ const Person = ({ history }) => {
                       movies.map(item => (
                         <MenuItem key={item.id} value={item}>
                           <Checkbox checked={director.filter(a => a.id == item.id).length != 0} />
-                          <ListItemText primary={`${item.first_name} ${item.last_name}`} />
+                          <ListItemText primary={`${item.title}`} />
                         </MenuItem>
                       ))
                     }
@@ -208,7 +223,7 @@ const Person = ({ history }) => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="content-producers-label">Producers</InputLabel>
+                  <InputLabel id="content-producers-label">Movies as Producer</InputLabel>
                   <Select
                     id="content-producers"
                     name="producers"
@@ -236,7 +251,7 @@ const Person = ({ history }) => {
                     renderValue={(selected) => (
                       <div>
                         {selected.map((value) => (
-                          <Chip key={value.id} label={`${value.first_name} ${value.last_name}`} />
+                          <Chip key={value.id} label={`${value.title}`} />
                         ))}
                       </div>
                     )}
@@ -246,7 +261,7 @@ const Person = ({ history }) => {
                       movies.map(item => (
                         <MenuItem key={item.id} value={item}>
                           <Checkbox checked={producer.filter(a => a.id == item.id).length != 0} />
-                          <ListItemText primary={`${item.first_name} ${item.last_name}`} />
+                          <ListItemText primary={`${item.title}`} />
                         </MenuItem>
                       ))
                     }

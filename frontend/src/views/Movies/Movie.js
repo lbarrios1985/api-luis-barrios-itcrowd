@@ -54,19 +54,17 @@ const Movie = ({ history }) => {
       method: 'post',
       url: `${config.API_HOST}/movie/`,
       data: data,
-      headers: {'Authorization': 'Token ' + token}
-      })
+      headers: { 'Authorization': 'Token ' + token }
+    })
       .then(function (response) {
-          //handle success
-          console.log(response.data.token);
-          // localStorage.setItem('token', response.data.token);
+        //handle success
+        console.log(response.data.token);
+        // localStorage.setItem('token', response.data.token);
       })
       .catch(function (response) {
-          //handle error
-          console.log(response);
+        //handle error
+        console.log(response);
       })
-
-
   }
 
   return (
