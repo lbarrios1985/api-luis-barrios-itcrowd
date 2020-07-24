@@ -72,17 +72,17 @@ export default function Movies({history}) {
           movie.roman_release_year,
           movie.actors.map(a => {
             return [
-              <a href={`/person/${a}`}>Actor {a}</a>
+              <a href={`/admin/person/${a}`}>Actor {a}</a>
             ]
           }),
           movie.directors.map(d => {
             return [
-              <a href={`/person/${d}`}>Director {d}</a>
+              <a href={`/admin/person/${d}`}>Director {d}</a>
             ]
           }),
           movie.producers.map(p => {
             return [
-              <a href={`/person/${p}`}>Producer {p}</a>
+              <a href={`/admin/person/${p}`}>Producer {p}</a>
             ]
           }),
           [
