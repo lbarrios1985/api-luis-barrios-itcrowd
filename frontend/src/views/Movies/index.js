@@ -52,6 +52,7 @@ const useStyles = makeStyles(styles)
 export default function Movies({history}) {
   // Const
   const table_head = ["ID", "Title", "Release Year", "Casting", "Directors","Producers", "Options"]
+  const isAuthenticated = localStorage.getItem('token') || null
   // States
   const [movies, setMovies] = useState([])
 
@@ -88,9 +89,13 @@ export default function Movies({history}) {
               <Button variant="contained" color="primary" type="submit" key={`view_${movie.pk}`} onClick={() => history.push(`/admin/movie/${movie.pk}`)}>
                 View
               </Button>
-              <Button variant="contained" color="primary" type="submit" key={`edit_${movie.pk}`} onClick={() => history.push(`/admin/movie/edit/${movie.pk}`)}>
-                Edit
-              </Button>
+              {
+                isAuthenticated && (
+                  <Button variant="contained" color="primary" type="submit" key={`edit_${movie.pk}`} onClick={() => history.push(`/admin/movie/edit/${movie.pk}`)}>
+                    Edit
+                  </Button>
+                )
+              }
             </>
           ]
         ]

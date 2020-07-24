@@ -34,9 +34,13 @@ const Movie = ({history}) => {
   const [actor, setActor] = useState([])
   const [director, setDirector] = useState([])
   const [producer, setProducer] = useState([])
+  const isAuthenticated = localStorage.getItem('token') || null
 
   // Effects
   useEffect(() => {
+    if(!isAuthenticated){
+      history.push("/admin/movie")
+    }
     getPersons()
   },[])
 
@@ -48,8 +52,8 @@ const Movie = ({history}) => {
   }
 
   const createMovie = (data) => {
-    axios.post(`${config.API_HOST}/movie/`,data).then(result => {
-      //history.push("/admin/movie")
+    axios.post(`${config.API_HOST}/movie/`,data,{headers:{'Authorization':`Token ${isAuthenticated}`}}).then(result => {
+      history.push("/admin/movie")
     })
   }
 
