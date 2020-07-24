@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 // Material Ui Graphics
 import {
-  Card, CardContent, CardHeader,
-  List, ListItem, ListItemText
+  Card, CardContent, List, ListItem, ListItemText
 } from '@material-ui/core'
 
 // 3rd party

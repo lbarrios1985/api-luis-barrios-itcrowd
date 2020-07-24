@@ -67,7 +67,7 @@ const Movie = ({ history, match }) => {
       let actors = []
       movie.actors.forEach(ma => {
         persons.forEach(p => {
-          if (p.id == ma) {
+          if (p.id === ma) {
             actors.push(p)
           }
         })
@@ -77,7 +77,7 @@ const Movie = ({ history, match }) => {
       let directors = []
       movie.directors.forEach(ma => {
         persons.forEach(p => {
-          if (p.id == ma) {
+          if (p.id === ma) {
             directors.push(p)
           }
         })
@@ -87,7 +87,7 @@ const Movie = ({ history, match }) => {
       let producers = []
       movie.producers.forEach(ma => {
         persons.forEach(p => {
-          if (p.id == ma) {
+          if (p.id === ma) {
             producers.push(p)
           }
         })
@@ -183,11 +183,11 @@ const Movie = ({ history, match }) => {
                           event.target.value.filter(data => {
                             let count = 0
                             event.target.value.forEach((value) => {
-                              if (value.id == data.id) {
+                              if (value.id === data.id) {
                                 count++
                               }
                             })
-                            if (count == 1) {
+                            if (count === 1) {
                               preSelected.push(data)
                             }
                           })
@@ -207,7 +207,7 @@ const Movie = ({ history, match }) => {
                         {
                           persons.map(item => (
                             <MenuItem key={item.id} value={item}>
-                              <Checkbox checked={actor.filter(a => a.id == item.id).length != 0} />
+                              <Checkbox checked={actor.filter(a => a.id === item.id).length !== 0} />
                               <ListItemText primary={`${item.first_name} ${item.last_name}`} />
                             </MenuItem>
                           ))
@@ -231,11 +231,11 @@ const Movie = ({ history, match }) => {
                           event.target.value.filter(data => {
                             let count = 0
                             event.target.value.forEach((value) => {
-                              if (value.id == data.id) {
+                              if (value.id === data.id) {
                                 count++
                               }
                             })
-                            if (count == 1) {
+                            if (count === 1) {
                               preSelected.push(data)
                             }
                           })
@@ -255,7 +255,7 @@ const Movie = ({ history, match }) => {
                         {
                           persons.map(item => (
                             <MenuItem key={item.id} value={item}>
-                              <Checkbox checked={director.filter(a => a.id == item.id).length != 0} />
+                              <Checkbox checked={director.filter(a => a.id === item.id).length !== 0} />
                               <ListItemText primary={`${item.first_name} ${item.last_name}`} />
                             </MenuItem>
                           ))
@@ -279,11 +279,11 @@ const Movie = ({ history, match }) => {
                           event.target.value.filter(data => {
                             let count = 0
                             event.target.value.forEach((value) => {
-                              if (value.id == data.id) {
+                              if (value.id === data.id) {
                                 count++
                               }
                             })
-                            if (count == 1) {
+                            if (count === 1) {
                               preSelected.push(data)
                             }
                           })
@@ -303,7 +303,7 @@ const Movie = ({ history, match }) => {
                         {
                           persons.map(item => (
                             <MenuItem key={item.id} value={item}>
-                              <Checkbox checked={producer.filter(a => a.id == item.id).length != 0} />
+                              <Checkbox checked={producer.filter(a => a.id === item.id).length !== 0} />
                               <ListItemText primary={`${item.first_name} ${item.last_name}`} />
                             </MenuItem>
                           ))

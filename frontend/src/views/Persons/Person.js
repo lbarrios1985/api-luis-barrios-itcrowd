@@ -33,7 +33,7 @@ const Person = ({ history, match }) => {
   const { id } = match.params
   // States
   const [movies, setMovies] = useState([])
-  const [person, setPerson] = useState([])
+  const [person, setPerson] = useState({})
   const [actor, setActor] = useState([])
   const [director, setDirector] = useState([])
   const [producer, setProducer] = useState([])
@@ -49,7 +49,7 @@ const Person = ({ history, match }) => {
         setPerson(result.data)
       })
     } else {
-      setMovies({
+      setPerson({
         first_name: '',
         last_name: '',
         alias: '',
@@ -195,8 +195,6 @@ const Person = ({ history, match }) => {
                           event.target.value.filter(data => {
                             let count = 0
                             event.target.value.forEach((value) => {
-                              console.log(value.pk)
-                              console.log(data.pk)
                               if (value.pk == data.pk) {
                                 count++
                               }

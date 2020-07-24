@@ -66,7 +66,6 @@ export default function Persons({ history }) {
   const getPersons = () => {
     axios.get(`${config.API_HOST}/person/`).then(result => {
       setPersons(result.data.map(person => {
-        console.log(person)
         return [
           person.id,
           person.first_name,

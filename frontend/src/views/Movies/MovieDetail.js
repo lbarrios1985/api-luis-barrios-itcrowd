@@ -12,17 +12,12 @@ import axios from 'axios'
 // Utils
 import config from "utils/config"
 
-const MovieDetail = ({match}) => {
+const MovieDetail = ({ match }) => {
   // Const
   const { id } = match.params
 
   // States
-  const [ movie, setMovie ] = useState({})
-
-  // Effects
-  useEffect(()=>{
-    getMovie()
-  },[])
+  const [movie, setMovie] = useState({})
 
   // Functions
   const getMovie = () => {
@@ -30,6 +25,12 @@ const MovieDetail = ({match}) => {
       setMovie(result.data)
     })
   }
+
+  // Effects
+  useEffect(() => {
+    getMovie()
+  }, [])
+
 
   return (
     <Card>
@@ -43,7 +44,7 @@ const MovieDetail = ({match}) => {
             <ListItemText primary="Actors" />
           </ListItem>
           <ListItem button>
-            { movie.actors && movie.actors.map(actor => (
+            {movie.actors && movie.actors.map(actor => (
               <a href={`/person/${actor}`} >Actor {actor}</a>
             ))}
           </ListItem>
@@ -51,7 +52,7 @@ const MovieDetail = ({match}) => {
             <ListItemText primary="Directors" />
           </ListItem>
           <ListItem button>
-            { movie.directors && movie.directors.map(director => (
+            {movie.directors && movie.directors.map(director => (
               <a href={`/person/${director}`} >Director {director}</a>
             ))}
           </ListItem>
@@ -59,7 +60,7 @@ const MovieDetail = ({match}) => {
             <ListItemText primary="Producers" />
           </ListItem>
           <ListItem button>
-            { movie.producers && movie.producers.map(producer => (
+            {movie.producers && movie.producers.map(producer => (
               <a href={`/person/${producer}`} >Producer {producer}</a>
             ))}
           </ListItem>

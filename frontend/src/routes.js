@@ -16,7 +16,6 @@
 
 */
 // @material-ui/icons
-import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from '@material-ui/icons/Group';
 import MovieIcon from '@material-ui/icons/Movie';
 import LockOpenIcon from '@material-ui/icons/LockOpen'
