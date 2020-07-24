@@ -107,7 +107,7 @@ const Person = ({ history, match }) => {
     axios.post(`${config.API_HOST}/person/`, data, { headers: { 'Authorization': `Token ${isAuthenticated}` } })
       .then(result => {
         console.log(result)
-        history.push("/admin/person")
+        history.push("/admin/persons")
       })
       .catch(function (response) {
         //handle error
@@ -117,7 +117,7 @@ const Person = ({ history, match }) => {
 
   const updatePerson = (data) => {
     axios.put(`${config.API_HOST}/person/${id}/`, data, { headers: { 'Authorization': `Token ${isAuthenticated}` } }).then(result => {
-      history.push("/admin/person")
+      history.push("/admin/persons")
     })
   }
 
