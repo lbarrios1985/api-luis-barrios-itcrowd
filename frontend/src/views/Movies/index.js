@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles"
 import Button from '@material-ui/core/Button'
+import { Add } from '@material-ui/icons'
 // core components
 import GridItem from "components/Grid/GridItem.js"
 import GridContainer from "components/Grid/GridContainer.js"
@@ -113,6 +114,16 @@ export default function Movies({history}) {
               Movies
             </h4>
           </CardHeader>
+          <GridItem>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              style={{marginTop:"10px"}}
+              onClick={() => history.push("/admin/create-movie")}
+            >
+              <Add/> Create
+            </Button>
+          </GridItem>
           <CardBody>
             <Table
               tableHeaderColor="primary"

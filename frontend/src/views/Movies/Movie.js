@@ -28,7 +28,9 @@ const MovieSchema = Yup.object().shape({
   producers: Yup.array().of(Yup.number()).required(),
 });
 
-const Movie = ({history}) => {
+const Movie = ({history, match}) => {
+  // const
+  const { id } = match.params
   // States
   const [persons, setPersons] = useState([])
   const [actor, setActor] = useState([])

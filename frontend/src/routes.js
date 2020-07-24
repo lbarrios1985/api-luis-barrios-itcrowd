@@ -26,7 +26,6 @@ import TableList from "views/TableList/TableList.js";
 import Login from "views/Login/Login.js";
 // Movies
 import Movies from "views/Movies/"
-import Movie from "views/Movies/Movie.js"
 
 const dashboardRoutes = [
   {
@@ -59,14 +58,6 @@ const dashboardRoutes = [
     rtlName: "قائمة الجدول",
     icon: MovieIcon,
     component: Movies,
-    layout: "/admin",
-  },
-  {
-    path: "/new-movie",
-    name: "Movie",
-    rtlName: "قائمة الجدول",
-    icon: MovieIcon,
-    component: Movie,
     layout: "/admin",
   }
 ];
