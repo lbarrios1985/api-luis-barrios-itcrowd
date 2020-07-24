@@ -10,6 +10,8 @@ import axios from 'axios'
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
+const isAuthenticated = localStorage.getItem('token') || null
+
 const API_HOST = 'http://localhost:8000';
 
 const SignUpSchema = Yup.object().shape({
@@ -39,6 +41,9 @@ async function loginPost(values) {
 
 const Login = () => (
   <div>
+    {isAuthenticated &&(
+      <h3>You are authenticated</h3>
+    )}
     <Box
       display="flex"
       alignItems="center"
