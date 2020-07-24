@@ -62,7 +62,15 @@
 
     (itcrowd)$ python manage.py migrate
 
-### 3.4-) Iniciar la aplicacion (Backend) api-luis-barrios-itcrowd:
+### 3.4-) Crear un usuario para poder loguearse:
+
+    Para poder registrar un usuario usar el siguiente comando:
+
+    (itcrowd)$ python manage.py createsuperuser
+
+    este es el usuario par poder ingresar en la plataforma 
+
+### 3.5-) Iniciar la aplicacion (Backend) api-luis-barrios-itcrowd:
 
     Para iniciar la apliacion se debe  ejecutar el siguiente comando:
 
