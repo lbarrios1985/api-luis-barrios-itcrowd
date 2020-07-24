@@ -20,6 +20,8 @@ import logo from "assets/img/reactlogo.png";
 // Movie
 import Movie from "views/Movies/Movie"
 import MovieDetail from "views/Movies/MovieDetail"
+import Person from "views/Persons/Person";
+import PersonDetail from "views/Persons/PersonDetail";
 
 let ps;
 
@@ -55,6 +57,24 @@ const switchRoutes = (
       path={"/admin/movie/edit/:id"}
       component={Movie}
       key={"/admin/movie/edit/:id"}
+    />
+    <Route
+      exact
+      path={"/admin/create-person"}
+      component={Person}
+      key={"/admin/create-person"}
+    />
+    <Route
+      exact
+      path={"/admin/person/:id"}
+      component={PersonDetail}
+      key={"/admin/person/:id"}
+    />
+    <Route
+      exact
+      path={"/admin/person/edit/:id"}
+      component={Person}
+      key={"/admin/person/edit/:id"}
     />
     <Redirect from="/admin" to="/admin/dashboard" />
   </Switch>

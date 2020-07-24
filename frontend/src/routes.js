@@ -20,14 +20,10 @@ import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from '@material-ui/icons/Group';
 import MovieIcon from '@material-ui/icons/Movie';
 import LockOpenIcon from '@material-ui/icons/LockOpen'
-// core components/views for Admin layout
-import DashboardPage from "views/Dashboard/Dashboard.js";
-import TableList from "views/TableList/TableList.js";
 // Login
 import Login from "views/Login/Login.js";
 // Person
 import Persons from "views/Persons/"
-import Person from "views/Persons/Person.js"
 // Movies
 import Movies from "views/Movies/"
 
@@ -42,18 +38,10 @@ const dashboardRoutes = [
   },
   {
     path: "/persons",
-    name: "Person List",
+    name: "Persons",
     rtlName: "لوحة القيادة",
     icon: GroupIcon,
     component: Persons,
-    layout: "/admin",
-  },
-  {
-    path: "/new-person",
-    name: "Person",
-    rtlName: "قائمة الجدول",
-    icon: PersonIcon,
-    component: Person,
     layout: "/admin",
   },
   {

@@ -38,8 +38,6 @@ const Movie = ({history, match}) => {
   const [producer, setProducer] = useState([])
   const isAuthenticated = localStorage.getItem('token') || null
 
-  const token = localStorage.getItem('token')
-
   // Effects
   useEffect(() => {
     if(!isAuthenticated){

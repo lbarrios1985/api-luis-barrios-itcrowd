@@ -27,14 +27,15 @@ const PersonSchema = Yup.object().shape({
   movies_as_producer: Yup.array().of(Yup.number()).required(),
 });
 
-const Person = ({ history }) => {
+const Person = ({ history, match }) => {
+  // const
+  const { id } = match.params
   // States
   const [movies, setMovies] = useState([])
   const [actor, setActor] = useState([])
   const [director, setDirector] = useState([])
   const [producer, setProducer] = useState([])
-
-  const token = localStorage.getItem('token')
+  const isAuthenticated = localStorage.getItem('token') || null
 
 
   // Effects
@@ -50,11 +51,8 @@ const Person = ({ history }) => {
   }
 
   const createPerson = (data) => {
-    axios({
-      method: 'post',
-      url: `${config.API_HOST}/person/`,
-      data: data,
-      headers: { 'Authorization': 'Token ' + token }
+    axios.post(`${config.API_HOST}/person/`, data, { headers: { 'Authorization': `Token ${isAuthenticated}` } }).then(result => {
+      history.push("/admin/person")
     })
       .then(function (response) {
         //handle success
@@ -80,7 +78,6 @@ const Person = ({ history }) => {
         }}
         validationSchema={PersonSchema}
         onSubmit={values => {
-          console.log("AQUIIIIIIIIIIIIIIIIIIII")
           createPerson(values)
         }}
         render={({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (

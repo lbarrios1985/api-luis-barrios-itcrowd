@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles"
 import Button from '@material-ui/core/Button'
+import { Add } from '@material-ui/icons'
 // core components
 import GridItem from "components/Grid/GridItem.js"
 import GridContainer from "components/Grid/GridContainer.js"
@@ -49,9 +50,10 @@ const styles = {
 
 const useStyles = makeStyles(styles)
 
-export default function Persons({history}) {
+export default function Persons({ history }) {
   // Const
-  const table_head = ["ID", "First name", "Last name", "Alias", "Options"]
+  const table_head = ["ID", "First name", "Last name", "Alias", "Movies as Actor", "Movies as Director", "Movies as Producer", "Options"]
+  const isAuthenticated = localStorage.getItem('token') || null
   // States
   const [persons, setPersons] = useState([])
 
@@ -70,14 +72,33 @@ export default function Persons({history}) {
           person.first_name,
           person.last_name,
           person.alias,
+          person.movies_as_actor.map(a => {
+            return [
+              <a href={`/admin/movie/${a}`}>Movie {a}</a>
+            ]
+          }),
+          person.movies_as_director.map(a => {
+            return [
+              <a href={`/admin/movie/${a}`}>Movie {a}</a>
+            ]
+          }),
+          person.movies_as_producer.map(a => {
+            return [
+              <a href={`/admin/movie/${a}`}>Movie {a}</a>
+            ]
+          }),
           [
             <>
               <Button variant="contained" color="primary" type="submit" key={`view_${person.id}`} onClick={() => history.push(`/admin/person/${person.id}`)}>
                 View
               </Button>
-              <Button variant="contained" color="primary" type="submit" key={`edit_${person.id}`} onClick={() => history.push(`/admin/person/edit/${person.id}`)}>
-                Edit
-              </Button>
+              {
+                isAuthenticated && (
+                  <Button variant="contained" color="primary" type="submit" key={`edit_${person.id}`} onClick={() => history.push(`/admin/person/edit/${person.id}`)}>
+                    Edit
+                  </Button>
+                )
+              }
             </>
           ]
         ]
@@ -95,6 +116,16 @@ export default function Persons({history}) {
               Persons
             </h4>
           </CardHeader>
+          <GridItem>
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ marginTop: "10px" }}
+              onClick={() => history.push("/admin/create-person")}
+            >
+              <Add /> Create
+            </Button>
+          </GridItem>
           <CardBody>
             <Table
               tableHeaderColor="primary"
