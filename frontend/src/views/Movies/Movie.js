@@ -28,17 +28,23 @@ const MovieSchema = Yup.object().shape({
   producers: Yup.array().of(Yup.number()).required(),
 });
 
-const Movie = ({ history }) => {
+const Movie = ({history, match}) => {
+  // const
+  const { id } = match.params
   // States
   const [persons, setPersons] = useState([])
   const [actor, setActor] = useState([])
   const [director, setDirector] = useState([])
   const [producer, setProducer] = useState([])
+  const isAuthenticated = localStorage.getItem('token') || null
 
   const token = localStorage.getItem('token')
 
   // Effects
   useEffect(() => {
+    if(!isAuthenticated){
+      history.push("/admin/movie")
+    }
     getPersons()
   }, [])
 
@@ -50,11 +56,8 @@ const Movie = ({ history }) => {
   }
 
   const createMovie = (data) => {
-    axios({
-      method: 'post',
-      url: `${config.API_HOST}/movie/`,
-      data: data,
-      headers: { 'Authorization': 'Token ' + token }
+    axios.post(`${config.API_HOST}/movie/`,data,{headers:{'Authorization':`Token ${isAuthenticated}`}}).then(result => {
+      history.push("/admin/movie")
     })
       .then(function (response) {
         //handle success

@@ -30,7 +30,6 @@ import Persons from "views/Persons/"
 import Person from "views/Persons/Person.js"
 // Movies
 import Movies from "views/Movies/"
-import Movie from "views/Movies/Movie.js"
 
 const dashboardRoutes = [
   {
@@ -63,14 +62,6 @@ const dashboardRoutes = [
     rtlName: "قائمة الجدول",
     icon: MovieIcon,
     component: Movies,
-    layout: "/admin",
-  },
-  {
-    path: "/new-movie",
-    name: "Movie",
-    rtlName: "قائمة الجدول",
-    icon: MovieIcon,
-    component: Movie,
     layout: "/admin",
   }
 ];

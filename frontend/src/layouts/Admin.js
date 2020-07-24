@@ -17,6 +17,10 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/reactlogo.png";
 
+// Movie
+import Movie from "views/Movies/Movie"
+import MovieDetail from "views/Movies/MovieDetail"
+
 let ps;
 
 const switchRoutes = (
@@ -25,6 +29,7 @@ const switchRoutes = (
       if (prop.layout === "/admin") {
         return (
           <Route
+            exact
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}
@@ -33,6 +38,24 @@ const switchRoutes = (
       }
       return null;
     })}
+    <Route
+      exact
+      path={"/admin/create-movie"}
+      component={Movie}
+      key={"/admin/create-movie"}
+    />
+    <Route
+      exact
+      path={"/admin/movie/:id"}
+      component={MovieDetail}
+      key={"/admin/movie/:id"}
+    />
+    <Route
+      exact
+      path={"/admin/movie/edit/:id"}
+      component={Movie}
+      key={"/admin/movie/edit/:id"}
+    />
     <Redirect from="/admin" to="/admin/dashboard" />
   </Switch>
 );

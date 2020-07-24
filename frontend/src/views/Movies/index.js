@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles"
 import Button from '@material-ui/core/Button'
+import { Add } from '@material-ui/icons'
 // core components
 import GridItem from "components/Grid/GridItem.js"
 import GridContainer from "components/Grid/GridContainer.js"
@@ -52,6 +53,7 @@ const useStyles = makeStyles(styles)
 export default function Movies({history}) {
   // Const
   const table_head = ["ID", "Title", "Release Year", "Casting", "Directors","Producers", "Options"]
+  const isAuthenticated = localStorage.getItem('token') || null
   // States
   const [movies, setMovies] = useState([])
 
@@ -88,9 +90,13 @@ export default function Movies({history}) {
               <Button variant="contained" color="primary" type="submit" key={`view_${movie.pk}`} onClick={() => history.push(`/admin/movie/${movie.pk}`)}>
                 View
               </Button>
-              <Button variant="contained" color="primary" type="submit" key={`edit_${movie.pk}`} onClick={() => history.push(`/admin/movie/edit/${movie.pk}`)}>
-                Edit
-              </Button>
+              {
+                isAuthenticated && (
+                  <Button variant="contained" color="primary" type="submit" key={`edit_${movie.pk}`} onClick={() => history.push(`/admin/movie/edit/${movie.pk}`)}>
+                    Edit
+                  </Button>
+                )
+              }
             </>
           ]
         ]
@@ -108,6 +114,16 @@ export default function Movies({history}) {
               Movies
             </h4>
           </CardHeader>
+          <GridItem>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              style={{marginTop:"10px"}}
+              onClick={() => history.push("/admin/create-movie")}
+            >
+              <Add/> Create
+            </Button>
+          </GridItem>
           <CardBody>
             <Table
               tableHeaderColor="primary"
