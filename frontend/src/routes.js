@@ -23,7 +23,11 @@ import LockOpenIcon from '@material-ui/icons/LockOpen'
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import TableList from "views/TableList/TableList.js";
+// Login
 import Login from "views/Login/Login.js";
+// Person
+import Persons from "views/Persons/"
+import Person from "views/Persons/Person.js"
 // Movies
 import Movies from "views/Movies/"
 import Movie from "views/Movies/Movie.js"
@@ -38,19 +42,19 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/users",
-    name: "Users",
+    path: "/persons",
+    name: "Person List",
     rtlName: "لوحة القيادة",
     icon: GroupIcon,
-    component: DashboardPage,
+    component: Persons,
     layout: "/admin",
   },
   {
-    path: "/person",
+    path: "/new-person",
     name: "Person",
     rtlName: "قائمة الجدول",
     icon: PersonIcon,
-    component: TableList,
+    component: Person,
     layout: "/admin",
   },
   {

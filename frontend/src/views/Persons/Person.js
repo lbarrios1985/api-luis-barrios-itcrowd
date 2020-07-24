@@ -18,37 +18,37 @@ import config from "utils/config"
 
 
 
-const MovieSchema = Yup.object().shape({
-  title: Yup.string().required(),
-  release_year: Yup.string().required()
-    .matches(/^[0-9]*$/, 'Only Numbers')
-    .min(4).max(4),
-  actors: Yup.array().of(Yup.number()).required(),
-  directors: Yup.array().of(Yup.number()).required(),
-  producers: Yup.array().of(Yup.number()).required(),
+const PersonSchema = Yup.object().shape({
+  first_name: Yup.string().required(),
+  last_name: Yup.string().required(),
+  alias: Yup.string().required(),
+  movies_as_actor: Yup.array().of(Yup.number()).required(),
+  movies_as_director: Yup.array().of(Yup.number()).required(),
+  movies_as_producer: Yup.array().of(Yup.number()).required(),
 });
 
-const Movie = ({ history }) => {
+const Person = ({ history }) => {
   // States
-  const [persons, setPersons] = useState([])
+  const [movies, setMovies] = useState([])
   const [actor, setActor] = useState([])
   const [director, setDirector] = useState([])
   const [producer, setProducer] = useState([])
 
   // Effects
   useEffect(() => {
-    getPersons()
+    getMovies()
   }, [])
 
   // Function
-  const getPersons = () => {
-    axios.get(`${config.API_HOST}/person/`).then(result => {
-      setPersons(result.data)
+  const getMovies = () => {
+    axios.get(`${config.API_HOST}/movie/`).then(result => {
+      setMovies(result.data)
     })
   }
 
-  const createMovie = (data) => {
-    axios.post(`${config.API_HOST}/movie/`, data, { 'Authorization': 'Token ' + localStorage.getItem('token') }).then(result => {
+  const createPerson = (data) => {
+    axios.post(`${config.API_HOST}/person/`, data, { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    ).then(result => {
       //history.push("/admin/movie")
     })
   }
@@ -57,44 +57,57 @@ const Movie = ({ history }) => {
     <div>
       <Formik
         initialValues={{
-          title: '',
-          year: '',
-          actors: [],
-          directors: [],
-          producers: [],
+          first_name: '',
+          last_name: '',
+          alias: '',
+          movies_as_actor: [],
+          movies_as_director: [],
+          movies_as_producer: [],
         }}
-        validationSchema={MovieSchema}
+        validationSchema={PersonSchema}
         onSubmit={values => {
-          createMovie(values)
+          createPerson(values)
         }}
         render={({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
           <form onSubmit={handleSubmit}>
             <Grid container spacing={1}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  error={errors.title ? true : false}
+                  error={errors.first_name ? true : false}
                   variant="outlined"
                   fullWidth
-                  label="Title"
+                  label="First Name"
                   name="title"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.title}
-                  helperText={errors.title ? errors.title : ''}
+                  value={values.first_name}
+                  helperText={errors.first_name ? errors.first_name : ''}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  error={errors.release_year ? true : false}
+                  error={errors.last_name ? true : false}
                   variant="outlined"
                   fullWidth
-                  label="Release Year"
-                  type="release_year"
-                  name="release_year"
+                  label="Last Name"
+                  name="last_name"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.release_year}
-                  helperText={errors.release_year ? errors.release_year : ''}
+                  value={values.last_name}
+                  helperText={errors.last_name ? errors.last_name : ''}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  error={errors.alias ? true : false}
+                  variant="outlined"
+                  fullWidth
+                  label="Alias"
+                  name="alias"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.alias}
+                  helperText={errors.alias ? errors.alias : ''}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -102,10 +115,10 @@ const Movie = ({ history }) => {
                   <InputLabel id="content-actors-label">Actors</InputLabel>
                   <Select
                     id="content-actors"
-                    name="actors"
+                    name="movies_as_actor"
                     labelId="content-actors-label"
                     value={actor}
-                    placeholder="Actors"
+                    placeholder="Movies as actor"
                     multiple
                     onChange={event => {
                       let preSelected = []
@@ -121,20 +134,20 @@ const Movie = ({ history }) => {
                         }
                       })
                       setActor(preSelected)
-                      setFieldValue('actors', preSelected.map(p => p.id))
+                      setFieldValue('movies_as_actor', preSelected.map(p => p.id))
                     }}
                     input={<Input id="select-multiple-actors" />}
                     renderValue={(selected) => (
                       <div>
                         {selected.map((value) => (
-                          <Chip key={value.id} label={`${value.first_name} ${value.last_name}`} />
+                          <Chip key={value.id} label={`${value.first_name} ${value.last_name} - ${value.alias}`} />
                         ))}
                       </div>
                     )}
                   >
                     <MenuItem value="">Select...</MenuItem>
                     {
-                      persons.map(item => (
+                      movies.map(item => (
                         <MenuItem key={item.id} value={item}>
                           <Checkbox checked={actor.filter(a => a.id == item.id).length != 0} />
                           <ListItemText primary={`${item.first_name} ${item.last_name}`} />
@@ -182,7 +195,7 @@ const Movie = ({ history }) => {
                   >
                     <MenuItem value="">Select...</MenuItem>
                     {
-                      persons.map(item => (
+                      movies.map(item => (
                         <MenuItem key={item.id} value={item}>
                           <Checkbox checked={director.filter(a => a.id == item.id).length != 0} />
                           <ListItemText primary={`${item.first_name} ${item.last_name}`} />
@@ -230,7 +243,7 @@ const Movie = ({ history }) => {
                   >
                     <MenuItem value="">Select...</MenuItem>
                     {
-                      persons.map(item => (
+                      movies.map(item => (
                         <MenuItem key={item.id} value={item}>
                           <Checkbox checked={producer.filter(a => a.id == item.id).length != 0} />
                           <ListItemText primary={`${item.first_name} ${item.last_name}`} />
@@ -253,4 +266,4 @@ const Movie = ({ history }) => {
   )
 }
 
-export default Movie
+export default Person
