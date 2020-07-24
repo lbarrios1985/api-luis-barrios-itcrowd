@@ -24,7 +24,9 @@ import LockOpenIcon from '@material-ui/icons/LockOpen'
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import TableList from "views/TableList/TableList.js";
 import Login from "views/Login/Login.js";
-import Person from "views/Person/Person.js";
+// Movies
+import Movies from "views/Movies/"
+import Movie from "views/Movies/Movie.js"
 
 const dashboardRoutes = [
   {
@@ -33,7 +35,7 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: LockOpenIcon,
     component: Login,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/users",
@@ -41,23 +43,31 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: GroupIcon,
     component: DashboardPage,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/person",
     name: "Person",
     rtlName: "قائمة الجدول",
     icon: PersonIcon,
-    component: Person,
-    layout: "/admin"
+    component: TableList,
+    layout: "/admin",
   },
   {
     path: "/movie",
+    name: "Movies",
+    rtlName: "قائمة الجدول",
+    icon: MovieIcon,
+    component: Movies,
+    layout: "/admin",
+  },
+  {
+    path: "/new-movie",
     name: "Movie",
     rtlName: "قائمة الجدول",
     icon: MovieIcon,
-    component: TableList,
-    layout: "/admin"
+    component: Movie,
+    layout: "/admin",
   }
 ];
 

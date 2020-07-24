@@ -13,11 +13,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['url', 'username', 'email', 'password']
 
-
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ['first_name', 'last_name','alias', 'movies_as_actor',
+        fields = ['id','first_name', 'last_name','alias', 'movies_as_actor',
                   'movies_as_director', 'movies_as_producer']
 
 
@@ -40,5 +39,5 @@ class MovieSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = ['title', 'release_year', 'roman_release_year',
-                  'actors', 'directors', 'producers']
+        fields = ['pk','title', 'release_year', 'roman_release_year',
+            'actors', 'directors', 'producers']
