@@ -16,16 +16,15 @@
 
 */
 // @material-ui/icons
-import RecentActorsIcon from '@material-ui/icons/RecentActors';
-import Person from "@material-ui/icons/Person";
+import PersonIcon from "@material-ui/icons/Person";
 import GroupIcon from '@material-ui/icons/Group';
 import MovieIcon from '@material-ui/icons/Movie';
 import LockOpenIcon from '@material-ui/icons/LockOpen'
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
-import UserProfile from "views/UserProfile/UserProfile.js";
 import TableList from "views/TableList/TableList.js";
 import Login from "views/Login/Login.js";
+import Person from "views/Person/Person.js";
 
 const dashboardRoutes = [
   {
@@ -44,20 +43,12 @@ const dashboardRoutes = [
     component: DashboardPage,
     layout: "/admin"
   },
-  // {
-  //   path: "/aliases",
-  //   name: "Aliases",
-  //   rtlName: "ملف تعريفي للمستخدم",
-  //   icon: RecentActorsIcon,
-  //   component: UserProfile,
-  //   layout: "/admin"
-  // },
   {
     path: "/person",
     name: "Person",
     rtlName: "قائمة الجدول",
-    icon: Person,
-    component: TableList,
+    icon: PersonIcon,
+    component: Person,
     layout: "/admin"
   },
   {

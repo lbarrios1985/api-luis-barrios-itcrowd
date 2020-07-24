@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from movies.models import Movie, Person, Alias
-
+from movies.models import Movie, Person
 
 class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
@@ -15,20 +14,14 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['url', 'username', 'email', 'password']
 
 
-class AliasSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Alias
-        fields = ['alias', 'person']
-
-
-class PersonSerializer(serializers.HyperlinkedModelSerializer):
+class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ['first_name', 'last_name', 'movies_as_actor',
-                  'movies_as_director', 'movies_as_producer', 'aliases']
+        fields = ['first_name', 'last_name','alias', 'movies_as_actor',
+                  'movies_as_director', 'movies_as_producer']
 
 
-class MovieSerializer(serializers.HyperlinkedModelSerializer):
+class MovieSerializer(serializers.ModelSerializer):
     roman_release_year = serializers.SerializerMethodField()
 
     def int_to_roman(self, year):

@@ -76,11 +76,11 @@
 
     Entrar en la carpeta raiz del proyecto:
 
-    cd  api-luis-barrios-itcrowd/backend
+    cd  api-luis-barrios-itcrowd/frontend
 
     Desde ahi se deben instalar los requirimientos del proyecto con el siguiente comando:
 
-    api-luis-barrios-itcrowd/backend$ npm install
+    api-luis-barrios-itcrowd/frontend$ npm install
 
     De esta manera se instalaran todos los requerimientos iniciales para montar el proyecto
 
@@ -88,7 +88,7 @@
 
     Para iniciar la apliacion se debe  ejecutar el siguiente comando:
 
-    api-luis-barrios-itcrowd/backend$ npm start
+    api-luis-barrios-itcrowd/frontend$ npm start
 
     Ingresar a la plataforma en la ruta: localhost:3000
 
