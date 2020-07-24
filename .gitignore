@@ -23,6 +23,7 @@ runserver
 *.planner
 *.tmp
 *.sqlite
+*.sqlite3
 .idea
 .bin
 *png
