@@ -23,9 +23,9 @@ const PersonSchema = Yup.object().shape({
   first_name: Yup.string().required(),
   last_name: Yup.string().required(),
   alias: Yup.string().required(),
-  movies_as_actor: Yup.array().of(Yup.number()).required(),
-  movies_as_director: Yup.array().of(Yup.number()).required(),
-  movies_as_producer: Yup.array().of(Yup.number()).required(),
+  movies_as_actor: Yup.array().of(Yup.number()),
+  movies_as_director: Yup.array().of(Yup.number()),
+  movies_as_producer: Yup.array().of(Yup.number())
 });
 
 const Person = ({ history, match }) => {
@@ -104,13 +104,10 @@ const Person = ({ history, match }) => {
   }
 
   const createPerson = (data) => {
-    axios.post(`${config.API_HOST}/person/`, data, { headers: { 'Authorization': `Token ${isAuthenticated}` } }).then(result => {
-      history.push("/admin/person")
-    })
-      .then(function (response) {
-        //handle success
-        console.log(response.data.token);
-        // localStorage.setItem('token', response.data.token);
+    axios.post(`${config.API_HOST}/person/`, data, { headers: { 'Authorization': `Token ${isAuthenticated}` } })
+      .then(result => {
+        console.log(result)
+        history.push("/admin/person")
       })
       .catch(function (response) {
         //handle error

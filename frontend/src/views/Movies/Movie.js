@@ -104,13 +104,10 @@ const Movie = ({ history, match }) => {
   }
 
   const createMovie = (data) => {
-    axios.post(`${config.API_HOST}/movie/`, data, { headers: { 'Authorization': `Token ${isAuthenticated}` } }).then(result => {
-      history.push("/admin/movie")
-    })
-      .then(function (response) {
-        //handle success
-        console.log(response.data.token);
-        // localStorage.setItem('token', response.data.token);
+    axios.post(`${config.API_HOST}/movie/`, data, { headers: { 'Authorization': `Token ${isAuthenticated}` } })
+      .then(result => {
+        console.log(result);
+        history.push("/admin/movie")
       })
       .catch(function (response) {
         //handle error
